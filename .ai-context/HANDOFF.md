@@ -19,3 +19,18 @@ Local Node/Canvas suite and exact-preview Theme Lab checks are run against the c
 The opaque ADAS overlap is an accepted visual choice. Native warning visibility remains unresolved: the exact-preview host does not enable native-card pass-through on `warningActive`, its managed-app width reduction does not clear opaque WebView pixels, and Default contains warning-aware right-side handling absent from this study. BSD and other assistance notifications do not all map to `warningActive`. READY/TSR/ESP foreground priority is documented but the physical diagnostic matrix remains unfilled. See the study README and composition report; do not infer vehicle safety from synthetic tests.
 
 Next steps: establish native-alert composition; decide the bounded real-host port, including lifecycle/calibration/projection and explicit controls, before creating any installable artifact.
+
+## Native steering preservation — 2026-10-25
+
+Isolated change against preview `2d4e32e6`: preserve each live OEM selection when
+short tap is native DEFAULT, including custom double/long combinations. Persist the
+live choice before capture, guard observed races, and confirm system writes. Both
+button settings show nonexclusive-action warnings. Stealth and tap dispatch/timing
+remain unchanged; no bootstrap, UID, firewall, theme or migration changes.
+
+Focused production-policy/source-contract JUnit suite: 33 tests passed with Java 11.
+Resource XML and whitespace checks passed. On the isolated preview-based tree,
+`:app:testDebugUnitTest :app:assembleDebug` passed with 596 tests (73 suites), no
+failures/errors/skips; debug assembly used an external unsigned init script, with no
+key generation. No isolated-commit hardware or visual UI validation claimed.
+Settings has no atomic compare-and-set; double/long OEM overlap remains documented.
