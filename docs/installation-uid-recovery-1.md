@@ -24,6 +24,8 @@ Foi utilizada uma adaptação **restrita à instalação** do método baseado em
 
 https://gist.github.com/paulovitin/b3af38b151f42c6f0c2858e4914c2503
 
+Uma [cópia histórica do bootstrap e do JavaScript de instalação](installation-reference/2026-10-25/README.md), com procedência, revisão e hashes, foi preservada neste fork. Ela não inclui os binários/APKs externos e não deve ser confundida com a adaptação restrita usada nesta instalação.
+
 O hook atuou temporariamente no processo Android `system_server`:
 
 1. Interceptou `com.android.server.pm.Settings.newUserIdLPwForThirdApp`.
