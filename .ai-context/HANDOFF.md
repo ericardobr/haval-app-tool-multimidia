@@ -19,3 +19,53 @@ Local Node/Canvas suite and exact-preview Theme Lab checks are run against the c
 The opaque ADAS overlap is an accepted visual choice. Native warning visibility remains unresolved: the exact-preview host does not enable native-card pass-through on `warningActive`, its managed-app width reduction does not clear opaque WebView pixels, and Default contains warning-aware right-side handling absent from this study. BSD and other assistance notifications do not all map to `warningActive`. READY/TSR/ESP foreground priority is documented but the physical diagnostic matrix remains unfilled. See the study README and composition report; do not infer vehicle safety from synthetic tests.
 
 Next steps: establish native-alert composition; decide the bounded real-host port, including lifecycle/calibration/projection and explicit controls, before creating any installable artifact.
+
+# Global AC focus handoff — 2026-10-25
+
+## Local review scope
+
+Based on preview `2d4e32e6be039d6e741c5f764bf72ab34b92ede4`, branch `review/ac-focus`.
+Bridge1.0.2 adds only global UI-focus read/save over the existing preference; v1.0
+contract, generic scoped preferences and HVAC handlers stay compatible. Default1.4.44,
+Minimalist1.0.4 and ApexGT1.0.16 use the API; older theme requirements remain supported.
+Do not add a compatibility polyfill that falsely promises global persistence.
+
+Changed groups: bridge/helper/tests; shared helper/browser mock; three-theme source,
+versions and generated assets; Theme Lab checks; API/system docs. No bootstrap/Telnet,
+firewall, steering integration, UID, signing or migration files belong to this change.
+
+## Validation
+
+Executed on this worktree using existing approved pinned dependencies:
+- `npm run build --prefix cluster-widgets/source/v1.0/default`: PASS.
+- `npm run build --prefix cluster-widgets/source/v1.0/minimalist`: PASS.
+- `npm run build --prefix cluster-widgets/source/v1.0/ApexGT`: PASS.
+- `npm run check --prefix cluster-widgets`: PASS (includes six helper/Default tests
+  and ten global-focus scenarios, including actual arrow-before-late-mock interaction).
+- `npm run check --prefix cluster-widgets/source/v1.0/ApexGT`: PASS (actual-menu AC
+  focus, runtime, display/motion/speed/projection and package checks).
+- Generated package byte-parity and `git diff --check`: PASS.
+
+On this isolated preview-based tree, `:app:testDebugUnitTest :app:assembleDebug`
+passed with 570 tests (71 suites), no failures/errors/skips, including the added
+native Sport compatibility contract. Debug assembly used an external unsigned init
+script; no key generation. No visual browser or isolated-commit hardware result is claimed.
+
+## Distribution and next review
+
+Default is embedded via APK raw HTML + manifest; Minimalist and ApexGT remain separate
+OTA theme files and are NOT installed by an APK-only update. No ThemeManager or install
+mechanism changed. Source plus generated artifacts must be reviewed together.
+
+No push, PR, issue or release-branch mutation performed. Open PR162 overlaps shared
+runtime/Default/Minimalist files; check merge interactions before any later publication,
+without importing its unrelated changes. Parked head-unit checks still need both focus
+values across updated themes/restart, first-arrow targets and unchanged long-key behavior.
+
+### Native Sport compatibility evidence
+
+SportRed/SportRedLite packages and native AcControlScreen are unchanged. The new
+bridge persists the same LAST_CLUSTER_AC_CONFIG enum names already read/written by
+the native screen; a focused source-contract/enum test checks this compatibility.
+`sh cluster-widgets/Themes/validate_sport_themes.sh` passes for both immutable
+0.16.44 packages. Starlight remains a development-only study, not an OTA consumer.
