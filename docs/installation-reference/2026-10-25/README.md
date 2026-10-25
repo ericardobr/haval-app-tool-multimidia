@@ -40,15 +40,32 @@ O mecanismo chamado de “rollback” no script limita-se a encerrar processos q
 
 Estas observações descrevem o original, que foi preservado sem correções ou endurecimento de segurança.
 
-## Dependências não arquivadas
+## Binários e APKs referenciados pelo instalador
 
-Não foram baixados nem incluídos neste snapshot:
+Referências originais preservadas:
 
-- `fridaserver.rar` e `fridainject.rar`, referenciados em `haval.joaoiot.com.br`;
-- APK do Shizuku, obtido de https://github.com/RikkaApps/Shizuku/releases/latest;
+- **`fridaserver.rar` e `fridainject.rar`, referenciados em `haval.joaoiot.com.br`:**
+  - https://haval.joaoiot.com.br/fridaserver.rar
+  - https://haval.joaoiot.com.br/fridainject.rar
+- **APK do Shizuku, obtido de https://github.com/RikkaApps/Shizuku/releases/latest.**
 - APK do Impulse, obtido de https://github.com/bobaoapae/haval-app-tool-multimidia/releases/latest.
 
-Logo, **isto não é um pacote de instalação offline completo**. Endereços externos podem mudar, falhar ou exigir revisão. Os hashes deste registro foram calculados no computador de trabalho, não na central.
+### Arquivados no fork
+
+Os arquivos grandes foram preservados como anexos de uma [release de arquivo](https://github.com/ericardobr/haval-app-tool-multimidia/releases/tag/archive-official-installer-2026-10-25), em vez de aumentar o histórico Git com binários. A release é marcada como **pre-release**, não uma nova build estável do fork.
+
+- **Impulse oficial 1.0.0.89**: `impulse-official-v1.0.0.89.apk`, 60.839.681 bytes; SHA-256 `6ace64537a0aba904122c81b5cb0e7f62d9d538da4839c8c30f71cc7d17d088c`.
+- **Shizuku 13.6.0.r1086.2650830c**: `shizuku-v13.6.0.r1086.2650830c-release.apk`, 2.571.773 bytes; SHA-256 `6e273ab0e991c4e79bc8b1bbb9b9dd739ccac1a8712a541a214078886b7b790f`.
+- Manifesto de procedência, tamanhos e hashes: [`manifest.json`](manifest.json), também anexado à release junto com `SHA256SUMS.txt`.
+- Cópias das licenças dos projetos anexadas: Shizuku (Apache-2.0) e Impulse (AGPL-3.0). As notas da release apontam para os respectivos códigos-fonte nas tags de origem.
+
+As versões foram resolvidas pelos endpoints `releases/latest` em 25/10/2026. O hash do Impulse coincide com o APK oficial anteriormente registrado. Para Shizuku, o snapshot identifica o download oficial atual, **não comprova identidade com uma versão historicamente instalada na central**. Os APKs foram preservados sem alterações e não foram executados.
+
+### Ainda pendentes
+
+Os dois binários Frida **não estão arquivados**. Os downloads dos endereços originais retornaram HTTP 403 no ambiente de coleta; uma tentativa no navegador da nuvem também foi bloqueada pelo cliente. Nenhuma cópia exata foi recuperada na Library, e não houve substituição por uma versão diferente.
+
+Logo, **isto ainda não é um pacote de instalação offline completo**. Endereços externos podem mudar, falhar ou exigir revisão. Os hashes deste registro foram calculados no computador de trabalho, não na central. Tamanho e hash dos seis anexos publicados foram conferidos com os metadados retornados pelo GitHub.
 
 ## Segurança e direitos
 

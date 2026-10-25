@@ -1,0 +1,47 @@
+{
+  "snapshot_date_utc": "2026-10-25",
+  "kind": "official-installer-reference",
+  "complete": false,
+  "archived_assets": [
+    {
+      "name": "impulse-official-v1.0.0.89.apk",
+      "version": "1.0.0.89",
+      "source_url": "https://github.com/bobaoapae/haval-app-tool-multimidia/releases/download/v1.0.0.89/app-release.apk",
+      "source_code_url": "https://github.com/bobaoapae/haval-app-tool-multimidia/tree/v1.0.0.89",
+      "license": "AGPL-3.0, see Impulse-LICENSE-AGPL-3.0.txt",
+      "size": 60839681,
+      "sha256": "6ace64537a0aba904122c81b5cb0e7f62d9d538da4839c8c30f71cc7d17d088c",
+      "modified": false,
+      "executed": false
+    },
+    {
+      "name": "shizuku-v13.6.0.r1086.2650830c-release.apk",
+      "version": "13.6.0.r1086.2650830c",
+      "source_url": "https://github.com/RikkaApps/Shizuku/releases/download/v13.6.0/shizuku-v13.6.0.r1086.2650830c-release.apk",
+      "source_code_url": "https://github.com/RikkaApps/Shizuku/tree/v13.6.0",
+      "license": "Apache-2.0, see Shizuku-LICENSE-Apache-2.0.txt",
+      "size": 2571773,
+      "sha256": "6e273ab0e991c4e79bc8b1bbb9b9dd739ccac1a8712a541a214078886b7b790f",
+      "modified": false,
+      "executed": false
+    }
+  ],
+  "pending_assets": [
+    {
+      "name": "fridaserver",
+      "source_url": "https://haval.joaoiot.com.br/fridaserver.rar",
+      "reason": "HTTP 403 in cloud download; exact historical binary not recovered; no substitute supplied"
+    },
+    {
+      "name": "fridainject",
+      "source_url": "https://haval.joaoiot.com.br/fridainject.rar",
+      "reason": "HTTP 403 in cloud download; exact historical binary not recovered; no substitute supplied"
+    }
+  ],
+  "notes": [
+    "APK versions resolved through upstream releases/latest on snapshot date; endpoints are floating.",
+    "Impulse official APK SHA256 matches previously recorded official 1.0.0.89 APK. Shizuku is current official download, not a claim of exact historical installed bytes.",
+    "Hashes computed on cloud host, not the head unit.",
+    "No binaries executed, no device changes, no custom APK or signing credentials included."
+  ]
+}
