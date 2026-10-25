@@ -43,3 +43,19 @@ Os testes de política cobrem escolhas -1, 0, 98 e acima de 99, backups ausentes
 obsoletos, falhas de persistência, mudanças entre leituras e confirmação de gravação.
 Os testes de contrato verificam o adaptador e a ligação dos avisos; não substituem
 validação visual ou testes de hardware.
+
+### Falha de commit com cache atualizado
+
+`SharedPreferences.commit()` pode atualizar o cache e ainda retornar `false` por
+falha de persistência. Igualdade entre o backup lido e a escolha atual não confirma
+gravação no disco. Cada tentativa de salvar o backup exige retorno `true` do
+commit síncrono, mesmo com valor idêntico no cache; falha aborta a captura antes de
+gravar 99. Uma nova tentativa pode recuperar a persistência sem perder a escolha
+OEM ainda presente. A leitura de confirmação do setting OEM não substitui essa
+confirmação de persistência das preferências.
+
+As regressões separam cache e disco: falha após atualização da memória, segunda
+reconciliação, recuperação com commit bem-sucedido e reinício com backup antigo
+ou ausente. A preservação sem captura também não pode produzir um cache que
+posteriormente autorize captura sem confirmação. Os dois botões usam backups
+independentes. Esses testes são simulações locais, não injeção de falha na central.

@@ -18,3 +18,12 @@ Baseline has no tracked `.ai-context` directory or `.agents/skills` packages. Ex
 - Android integration and on-device UI/behavior validation remain separate checks.
 
 - Isolated Android validation: 596 tests passed; unsigned debug assembly passed. No signing or deployment.
+
+## 2026-10-25 — PR #165: confirmação durável do backup
+
+- Removido o atalho por igualdade no cache do adaptador em ServiceManager.
+- A captura exige commit síncrono bem-sucedido mesmo depois de uma falha que alterou a memória.
+- FakeStore agora separa cache e disco; regressões cobrem repetição, recuperação e reinício com backup antigo/ausente nos dois botões.
+- Atualizado o contrato de fonte para rejeitar o atalho defeituoso.
+- Red/green local: 37 testes JUnit, 5 falhas antes e zero após a correção. Java 21 com source/target 11; não é compilação contra a API Java 11.
+- Build/testes Android agregados não executados: wrapper falhou ao baixar Gradle 9.3.1 com Network is unreachable. Nenhuma alteração de APK instalado, central ou workflow CI.

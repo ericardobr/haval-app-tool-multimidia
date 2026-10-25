@@ -34,3 +34,19 @@ Resource XML and whitespace checks passed. On the isolated preview-based tree,
 failures/errors/skips; debug assembly used an external unsigned init script, with no
 key generation. No isolated-commit hardware or visual UI validation claimed.
 Settings has no atomic compare-and-set; double/long OEM overlap remains documented.
+
+## PR #165 — revisão de durabilidade do backup
+
+ServiceManager não considera mais getString igual como confirmação de disco.
+Todo saveBackup precisa de commit() true antes de a política gravar 99.
+Alterados somente o adaptador, dois testes existentes e documentação da correção.
+Os testes mantêm cache e disco distintos, falham após atualizar cache e exercitam
+segunda reconciliação, retry bem-sucedido e reinício com backups antigos/ausentes.
+
+Validação atual: javac via módulo jdk.compiler (Java 21, source/target 11) e JUnit
+4.13.2 executaram 37 testes das três classes SteeringWheelNativeConfig: cinco
+falhas antes da correção, zero depois. git diff --check passou. A execução de
+./gradlew :app:testDebugUnitTest :app:assembleDebug --no-daemon parou no download
+da distribuição Gradle 9.3.1 (Network is unreachable), antes dos testes/build.
+Os 596 testes históricos acima não foram reexecutados para esta revisão.
+Não houve teste na central nem instalação; CI Android do novo head continua necessário.

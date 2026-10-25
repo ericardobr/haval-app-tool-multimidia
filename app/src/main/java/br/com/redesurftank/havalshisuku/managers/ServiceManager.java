@@ -1844,7 +1844,9 @@ public class ServiceManager {
                             return sharedPreferences.getString(backupKey.getKey(), null);
                         }
                         @Override public void saveBackup(String value) throws Exception {
-                            if (value.equals(readBackup())) return;
+                            // commit() can update memory even when persistence fails.
+                            // Cached equality must never authorize replacing the OEM choice.
+                            // A successful synchronous retry is required before capture.
                             if (!sharedPreferences.edit().putString(backupKey.getKey(), value).commit()) {
                                 throw new IllegalStateException("Could not persist native steering choice");
                             }

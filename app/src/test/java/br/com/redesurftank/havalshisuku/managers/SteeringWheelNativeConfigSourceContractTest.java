@@ -50,7 +50,7 @@ public class SteeringWheelNativeConfigSourceContractTest {
     @Test public void productionAdapterRequiresCommitAndConfirmsSystemWrite() throws Exception {
         String adapter = between(manager(), "    private synchronized void reconcileSteeringWheelNativeSetting(", "    private void sendClusterIntMsg(");
         assertTrue(adapter.contains("new SteeringWheelNativeConfigPolicy.Store()"));
-        assertTrue(adapter.contains("if (value.equals(readBackup())) return;"));
+        assertFalse(adapter.contains("if (value.equals(readBackup())) return;"));
         assertTrue(adapter.contains("if (!sharedPreferences.edit().putString(backupKey.getKey(), value).commit())"));
         assertTrue(adapter.contains("if (!value.equals(readCurrent()))"));
         assertFalse(adapter.contains(".apply()"));
