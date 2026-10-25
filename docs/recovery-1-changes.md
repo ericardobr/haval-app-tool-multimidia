@@ -4,7 +4,7 @@
 
 Comparação com a base oficial **1.0.0.89**, commit
 `a7533456bc0f0a4ee751e8bf66c092d59f5fd0e1` de `bobaoapae/haval-app-tool-multimidia`.
-Esta branch publica somente este registro de alterações; não contém, por si só, a implementação das mudanças descritas.
+Esta branch publica somente registros documentais; não contém, por si só, a implementação das mudanças descritas.
 Este documento descreve o código efetivamente incluído no APK assinado
 **`1.0.0.89-acfocus-oemkeys-recovery.1`**, `versionCode=2`, e identifica separadamente
 os temas complementares e as operações de instalação. Não é uma comparação com
@@ -47,7 +47,7 @@ a versão mais recente do upstream, nem uma alegação de reprodução byte a by
 
 ## O que foi feito na instalação, mas não é funcionalidade do APK
 
-- A instalação observada recebeu **UID 10052**, com auxílio do procedimento de instalação/hook. O APK não escolhe, reserva nem garante essa faixa de UID em outra instalação.
+- A instalação observada recebeu **UID 10052**, com auxílio do procedimento de instalação/hook; esse UID permaneceu após reboot real. O APK não escolhe, reserva nem garante essa faixa de UID em outra instalação. Consulte o [procedimento documentado de instalação e UID](installation-uid-recovery-1.md).
 - Preservação, migração e verificação das configurações foram realizadas por ferramentas externas. Não são um mecanismo novo de migração embutido no aplicativo.
 - Diagnósticos e cópias de segurança também são externos ao APK.
 - Foi utilizada uma nova identidade de assinatura, distinta da antiga test.2. Por isso, aquela troca exigiu reinstalação; atualizações futuras assinadas com a mesma nova chave podem seguir o fluxo normal de atualização, respeitadas as demais exigências do Android.
@@ -56,7 +56,7 @@ a versão mais recente do upstream, nem uma alegação de reprodução byte a by
 
 - Na preparação do APK: **630 testes Android**, sem falhas, erros ou testes ignorados, além dos testes de foco dos temas e verificações de compilação/assinatura.
 - No dispositivo, em 25/10/2026: instalação e configurações verificadas; inicialização root pelo loopback IPv6 ao abrir o aplicativo, Binder disponível e autorização Shizuku confirmados. O usuário confirmou o funcionamento no teste realizado.
-- **Inicialização após um desligamento/reboot real ainda não foi testada.** Desligar a ignição pode apenas suspender o sistema; o teste deve distinguir retomada de um novo boot.
+- Em teste posterior no mesmo dia, houve **reboot real confirmado**: UID 10052 mantido, inicialização local root/Shizuku, Binder, serviços e tratamento de `BOOT_COMPLETED` observados. Os registros disponíveis não comprovam conclusivamente a origem do primeiro lançamento do aplicativo; não foi declarado resolvido o início automático em todos os boots. A mini-tela do ar-condicionado apareceu tardiamente, sozinha, sem intervenção do usuário; esse atraso permanece em investigação.
 - O aviso de leitura do estado Wi-Fi por falta de `ACCESS_WIFI_STATE` é herdado: a permissão está ausente tanto na test.2 quanto neste APK. A chamada identificada captura a exceção e usa o estado em cache; esse aviso, isoladamente, não prova falha da inicialização inteira. Não houve correção dessa permissão nesta build.
 - A sobreposição de janelas exige autorização Android própria (`SYSTEM_ALERT_WINDOW`). A declaração no manifest e a restauração de preferências não equivalem à concessão dessa autorização.
 - A sobreposição entre duplo personalizado e dois curtos OEM permanece, conforme o aviso da interface.
