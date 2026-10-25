@@ -1141,7 +1141,7 @@ function handleSettingsTelemetry(key, value) {
         case KEYS.HVAC_POWER: {
             const p = Number(value);
             setState('power', p);
-            if (p === 0) setState('focusArea', 'fan');
+            // Telemetry updates power only; preserve the restored/user-selected focus.
             break;
         }
         case KEYS.HVAC_FAN_SPEED:

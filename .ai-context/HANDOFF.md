@@ -69,3 +69,26 @@ bridge persists the same LAST_CLUSTER_AC_CONFIG enum names already read/written 
 the native screen; a focused source-contract/enum test checks this compatibility.
 `sh cluster-widgets/Themes/validate_sport_themes.sh` passes for both immutable
 0.16.44 packages. Starlight remains a development-only study, not an OTA consumer.
+
+## PR166 follow-up — 2026-10-25
+
+The telemetry handler still contained a legacy reset after the initial focus
+restoration. This follow-up removes that reset and covers the actual seed and
+subscription callback paths before the first arrow, not only the visual component.
+Minimalist source/OTA version is now 1.0.5; contract v1.0 and bridge 1.0.2 are unchanged.
+
+Changed: Minimalist main.js, source/OTA theme.xml, generated OTA app.html,
+check-ac-focus-themes.mjs and these handoff/changelog notes. Default/ApexGT packages,
+Android source and CI workflows are unchanged.
+
+Validation: new regression demonstrably failed before fix, then all 46 focus
+scenarios passed; aggregate npm check and normal Minimalist npm build passed;
+source/dist/OTA parity verified. Host Python suite passed 6 tests including 15
+inner Java lifecycle cases. Android test/build was attempted but Gradle download
+failed with Network is unreachable, so those tasks did not execute. No physical
+vehicle or rendered-browser test was performed for this follow-up.
+
+Next: publish this scoped update to the existing PR166 after parent QA, then
+verify the exact remote SHA and upstream CI. CI execution may require maintainer
+approval. No standalone installer/APK or change to the installed vehicle is part
+of this follow-up.

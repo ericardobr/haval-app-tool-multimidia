@@ -24,3 +24,20 @@ Baseline has no tracked `.ai-context` directory or `.agents/skills` packages. Ex
 - No bootstrap, firewall, steering integration, UID, signing, migration or deployment changes.
 
 - Isolated Android validation: 570 tests passed; unsigned debug assembly passed. No signing or deployment.
+
+## 2026-10-25 — PR166 follow-up: preserve focus through HVAC snapshots
+
+- Removed the remaining Minimalist telemetry reset of focusArea on HVAC_POWER=0.
+  Power telemetry changes power state only, not the restored or explicit selection.
+- Added 36 regression scenarios to the existing 10: both saved values, initial
+  cache seeding and live subscription callbacks, numeric/string off/on power,
+  first UP/DOWN routing, and repeated off/unknown updates after explicit selection.
+- Red-before-green: the new test failed on the original code with
+  `seed power=0 must preserve temp`; all 46 scenarios pass after the fix.
+- Bumped Minimalist to 1.0.5 and regenerated its HTML/manifest via the normal build.
+- PASS: npm ci (locked dependencies), Minimalist build, aggregate npm check,
+  package byte parity, host lifecycle regression (6 Python tests; 15 inner JVM cases),
+  and git diff --check. No other theme, Android production code, bridge or CI change.
+- Android assemble/unit tasks were attempted but the Gradle wrapper download was
+  blocked by unavailable network (SocketException: Network is unreachable). No
+  Android build/unit result or new vehicle/browser validation is claimed.
